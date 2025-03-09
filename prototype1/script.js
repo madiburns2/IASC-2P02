@@ -8,7 +8,7 @@ const canvas = document.querySelector('.webgl')
 
 // Scene
 const scene = new THREE.Scene()
-scene.background = new THREE.Color('pink')
+scene.background = new THREE.Color('lightblue')
 
 // Camera
 const camera = new THREE.PerspectiveCamera(
@@ -18,7 +18,7 @@ const camera = new THREE.PerspectiveCamera(
     100
 )
 scene.add(camera)
-camera.position.set(0, 0, 5)
+camera.position.set(1, 0, 5)
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -37,6 +37,14 @@ const testSphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
 
 scene.add(testSphere)
 
+// testCone
+const coneGeometry = new THREE.ConeGeometry(1)
+const coneMaterial = new THREE.MeshNormalMaterial()
+const testCone = new THREE.Mesh(coneGeometry, coneMaterial)
+
+scene.add(testCone)
+testCone.position.set(3, 0, 0)
+
 
 /************************
  ** ANIMATION LOOP **
@@ -50,6 +58,11 @@ const animation = () =>
 
     // Animate testSphere
     testSphere.position.y = Math.sin(elapsedTime)
+
+    // Animate testCone
+    testCone.position.z = Math.sin(elapsedTime)
+    
+   
 
     //Renderer
     renderer.render(scene, camera)
